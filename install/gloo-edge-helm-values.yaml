@@ -1,0 +1,18 @@
+gloo:
+  settings:
+    # Only watch 2 specific namespaces for Gloo CRs, which does not include the application namespace(s).
+    # watchNamespaces:
+    # - gloo-system
+    # - gloo-deployments
+    # # - httpbin 
+    disableKubernetesDestinations: true
+  discovery:
+    enabled: false
+  gatewayProxies:
+    gatewayProxy:
+      gatewaySettings:
+        accessLoggingService:
+          accessLog:
+          - fileSink:
+              path: /dev/stdout
+              stringFormat: ""

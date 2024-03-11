@@ -1,0 +1,10 @@
+apiVersion: gloo.solo.io/v1
+kind: Upstream
+metadata:
+  name: httpbin-static-duckdns
+  namespace: gloo-system
+spec:
+  static:
+    hosts:
+      - addr: gloo-test.duckdns.org
+        port: 80

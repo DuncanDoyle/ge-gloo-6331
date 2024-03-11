@@ -1,0 +1,27 @@
+apiVersion: gateway.solo.io/v1
+kind: VirtualService
+metadata:
+  name: vs
+  namespace: gloo-system
+  labels:
+    app: httpbin
+spec:
+  virtualHost:
+    domains:
+    - 'api.example.com'
+    routes:
+    - matchers:
+      - prefix: /httpbin/
+      routeAction:
+        single:
+          upstream:
+            name: httpbin-static-duckdns
+            namespace: gloo-system
+      options:
+        prefixRewrite: /
+        # autoHostRewrite: true
+        headerManipulation:
+          requestHeadersToAdd:
+          - header:
+              key: went-thru-gloo
+              value: "true"
